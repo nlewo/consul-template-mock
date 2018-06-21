@@ -1,0 +1,13 @@
+services = simple
+
+secret = simple
+
+regexReplaceAll = simple
+
+file = simple
+
+env = simple
+
+keyOrDefault = default
+
+key = simple

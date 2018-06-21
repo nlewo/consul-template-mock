@@ -1,0 +1,10 @@
+{ "service": {
+    "simple": [{"Name":"simple"}]},
+  "key": {
+      "/simple": "simple"
+  },
+  "env": {"simple": "simple"},
+  "secret": {"secret/simple":
+             {"simple": "simple"}},
+  "file": {"/simple": "simple"}
+}

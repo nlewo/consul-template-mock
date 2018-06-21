@@ -7,7 +7,7 @@ import (
 )
 
 func TestMock(t *testing.T) {
-	examplePrefixes := []string{"contrail-api", "skydive"}
+	examplePrefixes := []string{"contrail-api", "skydive", "simple", "trivial"}
 
 	for _, v := range examplePrefixes {
 		t.Run(v, func(t *testing.T) {

@@ -3,10 +3,13 @@
 
 ### Usage
 
-```$ consul-template-mock consul-template.tmpl data.json```
+```
+$ consul-template-mock examples/trivial.tmpl examples/trivial.json
+Rendered without Consul :/
+```
 
-where `consul-template.tmpl` is a consul template file and `data.json`
-is a JSON file describing datas.
+where `trivial.tmpl` is a consul template file and `trivial.json`
+is a JSON file describing input datas.
 
 
 ### Build
