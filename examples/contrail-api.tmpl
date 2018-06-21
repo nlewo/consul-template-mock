@@ -1,0 +1,52 @@
+{{ $opencontrail := keyOrDefault "/config/opencontrail/data" "{}" | parseJSON -}}
+{{ $openstack_region := env "openstack_region" -}}
+{{ $catalog := key (printf "/config/openstack/catalog/%s/data" $openstack_region) | parseJSON -}}
+[DEFAULTS]
+aaa_mode=cloud-admin
+auth=keystone
+cassandra_server_list={{- range $index, $data := service "opencontrail-config-cassandra" -}}
+  {{- if $index }} {{ end }}{{- $data.Address -}}
+{{- end }}
+disc_server_ip=opencontrail-discovery.service
+disc_server_port=5998
+ifmap_server_ip={{- file "/my-ip" -}}
+listen_ip_addr={{- file "/my-ip" -}}
+listen_port=8082
+log_level={{- if $opencontrail.api.log_level -}}
+                    {{- $opencontrail.api.log_level -}}
+                  {{- else if $opencontrail.log_level -}}
+                    {{- $opencontrail.log_level -}}
+                  {{- else -}}
+                    SYS_INFO
+                  {{- end }}
+log_local=1
+rabbit_password={{- with secret "secret/opencontrail" -}}
+  {{- .Data.queue_password }}
+{{- end }}
+rabbit_port=5672
+rabbit_server={{- range $index, $data := service "opencontrail-queue" -}}
+  {{- if $index }}, {{ end }}{{- $data.Address -}}
+{{- end }}
+rabbit_user=opencontrail
+rabbit_vhost=opencontrail
+zk_server_ip={{- range $index, $data := service "opencontrail-config-zookeeper" -}}
+  {{- if $index }}, {{ end }}{{- $data.Address -}}
+{{- end }}
+zk_server_port=2181
+
+[IFMAP_SERVER]
+ifmap_credentials=ifmap:{{- with secret "secret/opencontrail" -}}
+  {{- .Data.ifmap_password }}
+{{- end }}
+ifmap_listen_ip={{- file "/my-ip" -}}
+ifmap_listen_port=8443
+
+[KEYSTONE]
+admin_password={{- with secret "secret/opencontrail" -}}
+  {{- .Data.service_password }}
+{{- end }}
+admin_tenant_name=service
+admin_user=opencontrail
+auth_host={{ with $catalog.identity.admin_url }}{{ . | regexReplaceAll "http://([^:/]+).*" "$1" }}{{ end }}
+auth_port={{ if ($catalog.identity.admin_url | printf "%q") | regexMatch "(http:[^:]+:[0-9]+.*)" }}35357{{ else }}80{{ end }}
+auth_protocol=http

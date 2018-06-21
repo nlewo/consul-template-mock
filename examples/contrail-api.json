@@ -1,0 +1,15 @@
+{ "service": {
+    "opencontrail-config-cassandra": [{"Address":"localhost"}],
+    "opencontrail-queue": [{"Address":"localhost"}],
+    "opencontrail-config-zookeeper": [{"Address":"localhost"}]},
+  "key": {
+      "/config/opencontrail/data": "{\"api\": {\"log_level\": 1}}",
+      "/config/openstack/catalog/Region1/data": "{\"identity\": {\"admin_url\":\"http:identity\"}}"
+  },
+  "env": {"openstack_region": "Region1"},
+  "secret": {"secret/opencontrail":
+             {"ifmap_password": "ifmap-pwd",
+              "queue_password": "rabbit-pwd",
+              "service_password": "admin-pwd"}},
+  "file": {"/my-ip": "127.0.0.1\n"}
+}
