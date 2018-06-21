@@ -119,7 +119,7 @@ func mock(templateFileName, inputDataFileName string, wr io.Writer) error {
 
 func main() {
 	if len(os.Args) != 3 {
-		fmt.Printf("consul-template-mock - Render consul template from json file datasource")
+		fmt.Printf("consul-template-mock - Render consul-template from JSON file datasource\n")
 		fmt.Printf("Usage: consul-template-mock template-file.tmpl input-data-file.json")
 		os.Exit(1)
 	}
