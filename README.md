@@ -1,4 +1,5 @@
-`consul-template-mock` eats a JSON file to render a Consul template
+`consul-template-mock` eats a JSON file to render a [`consul-template`](https://github.com/hashicorp/consul-template) template
+for testing and development purposes.
 
 
 ### Usage
@@ -8,13 +9,15 @@ $ consul-template-mock examples/trivial.tmpl examples/trivial.json
 Rendered without Consul :/
 ```
 
-where `trivial.tmpl` is a consul template file and `trivial.json`
-is a JSON file describing input datas.
+where [examples/trivial.tmpl](examples/trivial.tmpl) is a
+`consul-template` template file and
+[examples/trivial.json](examples/trivial.json) is a JSON file
+describing input datas (see below for its format).
 
 
-### Build
+### Installation
 
-`go build consul-template-mock.go`
+`go get github.com/nlewo/consul-template-mock`
 
 
 ### Input JSON file format
