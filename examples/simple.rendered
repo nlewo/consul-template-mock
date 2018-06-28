@@ -1,13 +1,13 @@
-services = simple
+services = with_its_name
 
-secret = simple
+secret = ****
 
 regexReplaceAll = simple
 
-file = simple
+file = with_its_content
 
-env = simple
+env = with_its_value
 
 keyOrDefault = default
 
-key = simple
+key = with_its_value

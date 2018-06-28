@@ -1,17 +1,17 @@
-services = {{ range $index, $data := service "simple" -}}
+services = {{ range $index, $data := service "a_service" -}}
   {{- $data.Name -}}
 {{- end }}
 
-secret = {{ with secret "secret/simple" -}}
-  {{- .Data.simple }}
+secret = {{ with secret "a_secret_path" -}}
+  {{- .Data.a_secret }}
 {{- end }}
 
 regexReplaceAll = {{ "simple" | regexReplaceAll "http://(.*)ple" "$1" }}
 
-file = {{ file "/simple" }}
+file = {{ file "a_filepath" }}
 
-env = {{  env "simple" }}
+env = {{  env "a_environment_variable" }}
 
-keyOrDefault = {{ keyOrDefault "/simple-not-existing" "default" }}
+keyOrDefault = {{ keyOrDefault "simple-not-existing" "default" }}
 
-key = {{ key "/simple" }}
+key = {{ key "a_key" }}

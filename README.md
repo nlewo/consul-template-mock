@@ -24,14 +24,14 @@ describing input mock datas (see below for its format).
 
 ```json
 { "service": {
-    "simple": [{"Name":"simple"}]},
+    "a_service": [{"Name":"with_its_name"}]},
   "key": {
-      "/simple": "simple"
+      "a_key": "with_its_value"
   },
-  "env": {"simple": "simple"},
-  "secret": {"secret/simple":
-             {"simple": "simple"}},
-  "file": {"/simple": "simple"}
+  "env": {"a_environment_variable": "with_its_value"},
+  "secret": {"a_secret_path":
+             {"a_secret": "****"}},
+  "file": {"a_filepath": "with_its_content"}
 }
 ```
 
