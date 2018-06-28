@@ -23,7 +23,7 @@ type Input struct {
 	Secret  map[string]map[string]string
 }
 
-func mock(templateFileName, inputDataFileName string, wr io.Writer) error {
+func mockFromFilename(templateFileName, inputDataFileName string, wr io.Writer) error {
 	templateText, err := ioutil.ReadFile(templateFileName)
 	if err != nil {
 		return fmt.Errorf("reading file %s: %s", templateFileName, err)
@@ -34,8 +34,12 @@ func mock(templateFileName, inputDataFileName string, wr io.Writer) error {
 		return fmt.Errorf("reading file %s: %s", inputDataFileName, err)
 	}
 
+	return mock(templateText, inputData, wr)
+}
+
+func mock(templateText, inputData []byte, wr io.Writer) error {
 	var input Input
-	err = json.Unmarshal(inputData, &input)
+	err := json.Unmarshal(inputData, &input)
 	if err != nil {
 		return fmt.Errorf("parsing json input : %s", err)
 	}
@@ -105,7 +109,7 @@ func mock(templateFileName, inputDataFileName string, wr io.Writer) error {
 		},
 	}
 
-	tmpl, err := template.New("template").Funcs(funcMap).Parse(string(templateText))
+	tmpl, err := template.New("template").Funcs(funcMap).Option("missingkey=error").Parse(string(templateText))
 	if err != nil {
 		return fmt.Errorf("parsing template: %s", err)
 	}
@@ -124,7 +128,7 @@ func main() {
 		os.Exit(1)
 	}
 
-	if err := mock(os.Args[1], os.Args[2], os.Stdout); err != nil {
+	if err := mockFromFilename(os.Args[1], os.Args[2], os.Stdout); err != nil {
 		log.Fatal(err)
 	}
 

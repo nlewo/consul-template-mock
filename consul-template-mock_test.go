@@ -13,7 +13,7 @@ func TestMock(t *testing.T) {
 		t.Run(v, func(t *testing.T) {
 			rw := new(bytes.Buffer)
 
-			if err := mock("examples/"+v+".tmpl", "examples/"+v+".json", rw); err != nil {
+			if err := mockFromFilename("examples/"+v+".tmpl", "examples/"+v+".json", rw); err != nil {
 				t.Error(err)
 			}
 
@@ -27,5 +27,16 @@ func TestMock(t *testing.T) {
 				t.Fatalf("%s != %s", string(rendered), string(expected))
 			}
 		})
+	}
+}
+
+func TestMissing(t *testing.T) {
+	rw := new(bytes.Buffer)
+
+	template := []byte("{{- with secret \"a\" -}}{{- .Data.d }}{{- end }}")
+	mockData := []byte("{ \"secret\": {\"a\": {\"b\": \"c\"}}}")
+
+	if err := mock(template, mockData, rw); err == nil {
+		t.Errorf("Keys of map must be present")
 	}
 }
