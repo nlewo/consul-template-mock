@@ -12,7 +12,7 @@ Rendered without Consul :/
 where [examples/trivial.tmpl](examples/trivial.tmpl) is a
 `consul-template` template file and
 [examples/trivial.json](examples/trivial.json) is a JSON file
-describing input datas (see below for its format).
+describing input mock datas (see below for its format).
 
 
 ### Installation
@@ -20,20 +20,26 @@ describing input datas (see below for its format).
 `go get github.com/nlewo/consul-template-mock`
 
 
-### Input JSON file format
+### Mock JSON file format
 
-The JSON top level attributes are
-- service: object where keys are service name
-- secret: object where keys are secret name
-- key: object where keys are Consul key and value associated value
-- env: object where keys are environment variable name and value the variable value
-- file: object where keys are file name and value file contents
+```json
+{ "service": {
+    "simple": [{"Name":"simple"}]},
+  "key": {
+      "/simple": "simple"
+  },
+  "env": {"simple": "simple"},
+  "secret": {"secret/simple":
+             {"simple": "simple"}},
+  "file": {"/simple": "simple"}
+}
+```
 
-Check the `./examples` directory for examples!
+See the `./examples` directory for more examples!
 
 
 ### Limitations
 
-Only `consul-template` functions I use are mocked, so only a subpart
-of `consul-template` language is supported. But contributions are
-welcome.
+Only `consul-template` functions that I use are mocked, so just a
+subpart of `consul-template` language is currently
+supported. Contributions are welcome!

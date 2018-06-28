@@ -23,23 +23,23 @@ type Input struct {
 	Secret  map[string]map[string]string
 }
 
-func mockFromFilename(templateFileName, inputDataFileName string, wr io.Writer) error {
+func mockFromFilename(templateFileName, mockDataFileName string, wr io.Writer) error {
 	templateText, err := ioutil.ReadFile(templateFileName)
 	if err != nil {
 		return fmt.Errorf("reading file %s: %s", templateFileName, err)
 	}
 
-	inputData, err := ioutil.ReadFile(inputDataFileName)
+	mockData, err := ioutil.ReadFile(mockDataFileName)
 	if err != nil {
-		return fmt.Errorf("reading file %s: %s", inputDataFileName, err)
+		return fmt.Errorf("reading file %s: %s", mockDataFileName, err)
 	}
 
-	return mock(templateText, inputData, wr)
+	return mock(templateText, mockData, wr)
 }
 
-func mock(templateText, inputData []byte, wr io.Writer) error {
+func mock(templateText, mockData []byte, wr io.Writer) error {
 	var input Input
-	err := json.Unmarshal(inputData, &input)
+	err := json.Unmarshal(mockData, &input)
 	if err != nil {
 		return fmt.Errorf("parsing json input : %s", err)
 	}
@@ -123,8 +123,8 @@ func mock(templateText, inputData []byte, wr io.Writer) error {
 
 func main() {
 	if len(os.Args) != 3 {
-		fmt.Printf("consul-template-mock - Render consul-template from JSON file datasource\n")
-		fmt.Printf("Usage: consul-template-mock template-file.tmpl input-data-file.json")
+		fmt.Printf("consul-template-mock - Render consul-template templates from JSON mock data file\n")
+		fmt.Printf("Usage: consul-template-mock template-file.tmpl mock-data-file.json")
 		os.Exit(1)
 	}
 
