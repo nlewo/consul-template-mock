@@ -1,14 +1,17 @@
-services = with_its_name
+services: with_its_name
 
-secret = a_secret: ****
-a_list_of_secrets: 1111 2222
+secret:
+  a_secret: ****
+  a_list_of_secrets:
+    - 1111
+    - 2222
 
-regexReplaceAll = simple
+regexReplaceAll: simple
 
-file = with_its_content
+file: with_its_content
 
-env = with_its_value
+env: with_its_value
 
-keyOrDefault = default
+keyOrDefault: default
 
-key = with_its_value
+key: with_its_value
