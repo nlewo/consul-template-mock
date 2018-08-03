@@ -1,6 +1,7 @@
 services = with_its_name
 
-secret = ****
+secret = a_secret: ****
+a_list_of_secrets: 1111 2222
 
 regexReplaceAll = simple
 

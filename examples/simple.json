@@ -4,7 +4,8 @@
       "a_key": "with_its_value"
   },
   "env": {"a_environment_variable": "with_its_value"},
-  "secret": {"a_secret_path":
-             {"a_secret": "****"}},
+  "secret": {"a_secret_path": {
+                "a_secret": "****",
+                "a_list_of_secrets": [ "1111", "2222"]}},
   "file": {"a_filepath": "with_its_content"}
 }
