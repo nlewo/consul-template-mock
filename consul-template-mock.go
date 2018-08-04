@@ -12,7 +12,7 @@ import (
 )
 
 type Secret struct {
-	Data map[string]string
+	Data map[string]interface{}
 }
 
 type Input struct {
@@ -20,7 +20,7 @@ type Input struct {
 	Key     map[string]string
 	Env     map[string]string
 	File    map[string]string
-	Secret  map[string]map[string]string
+	Secret  map[string]map[string]interface{}
 }
 
 func mockFromFilename(templateFileName, mockDataFileName string, wr io.Writer) error {
