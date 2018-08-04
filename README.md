@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/nlewo/consul-template-mock.svg?branch=master)](https://travis-ci.org/nlewo/consul-template-mock)
+
 `consul-template-mock` eats a JSON file to render a [`consul-template`](https://github.com/hashicorp/consul-template) template
 for testing and development purposes.
 
