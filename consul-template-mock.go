@@ -17,7 +17,7 @@ type Secret struct {
 
 type Input struct {
 	Service map[string]interface{}
-	Key     map[string]interface{}
+	Key     map[string]string
 	Env     map[string]string
 	File    map[string]string
 	Secret  map[string]map[string]interface{}
@@ -63,13 +63,13 @@ func mock(templateText, mockData []byte, wr io.Writer) error {
 			}
 			return "", fmt.Errorf("file '%s' doesn't exist: %s", fileName, err)
 		},
-		"key": func(key string) (interface{}, error) {
+		"key": func(key string) (string, error) {
 			if i, ok := input.Key[key]; ok {
 				return i, nil
 			}
 			return "", fmt.Errorf("key '%s' doesn't exist: %s", key, err)
 		},
-		"keyOrDefault": func(key, def string) interface{} {
+		"keyOrDefault": func(key, def string) string {
 			if i, ok := input.Key[key]; ok {
 				return i
 			}

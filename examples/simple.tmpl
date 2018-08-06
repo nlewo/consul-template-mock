@@ -19,9 +19,4 @@ env: {{  env "a_environment_variable" }}
 
 keyOrDefault: {{ keyOrDefault "simple-not-existing" "default" }}
 
-key:
-  a_key: {{ key "a_key" }}
-  a_dict:
-  {{- range $i, $v := key "a_dict"}}
-    {{ $i }}: {{ $v }}
-  {{- end}}
+key: {{ key "a_key" }}

@@ -1,8 +1,7 @@
 { "service": {
     "a_service": [{"Name":"with_its_name"}]},
   "key": {
-      "a_key": "with_its_value",
-      "a_dict": {"foo": "bar"}
+      "a_key": "with_its_value"
   },
   "env": {"a_environment_variable": "with_its_value"},
   "secret": {"a_secret_path": {

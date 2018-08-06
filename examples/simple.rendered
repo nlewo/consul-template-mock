@@ -14,7 +14,4 @@ env: with_its_value
 
 keyOrDefault: default
 
-key:
-  a_key: with_its_value
-  a_dict:
-    foo: bar
+key: with_its_value
