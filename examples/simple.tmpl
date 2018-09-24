@@ -13,6 +13,8 @@ secret:
 
 regexReplaceAll: {{ "simple" | regexReplaceAll "http://(.*)ple" "$1" }}
 
+replaceAll: {{ "in_a_dashed_context" | replaceAll "_" " " }}
+
 file: {{ file "a_filepath" }}
 
 env: {{  env "a_environment_variable" }}

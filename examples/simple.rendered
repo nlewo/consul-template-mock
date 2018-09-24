@@ -8,6 +8,8 @@ secret:
 
 regexReplaceAll: simple
 
+replaceAll: in a dashed context
+
 file: with_its_content
 
 env: with_its_value

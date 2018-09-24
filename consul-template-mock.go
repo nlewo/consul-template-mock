@@ -8,6 +8,7 @@ import (
 	"log"
 	"os"
 	"regexp"
+	"strings"
 	"text/template"
 )
 
@@ -106,6 +107,9 @@ func mock(templateText, mockData []byte, wr io.Writer) error {
 				return false, err
 			}
 			return compiled.MatchString(s), nil
+		},
+		"replaceAll": func(f, t, s string) (string, error) {
+			return strings.Replace(s, f, t, -1), nil
 		},
 	}
 
