@@ -22,3 +22,7 @@ env: {{  env "a_environment_variable" }}
 keyOrDefault: {{ keyOrDefault "simple-not-existing" "default" }}
 
 key: {{ key "a_key" }}
+
+file:
+  multiline: |
+{{ file "a_filepath2" | indent 4 }}

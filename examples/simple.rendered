@@ -17,3 +17,10 @@ env: with_its_value
 keyOrDefault: default
 
 key: with_its_value
+
+file:
+  multiline: |
+    content
+    with
+    few
+    lines
