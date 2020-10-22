@@ -7,5 +7,8 @@
   "secret": {"a_secret_path": {
                 "a_secret": "****",
                 "a_list_of_secrets": [ "1111", "2222"]}},
-  "file": {"a_filepath": "with_its_content"}
+  "file": {
+    "a_filepath": "with_its_content", 
+    "a_filepath2": "content\nwith\nfew\nlines"
+  }
 }
