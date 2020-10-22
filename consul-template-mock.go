@@ -133,7 +133,7 @@ func mock(templateText, mockData []byte, wr io.Writer) error {
         },	
     }
 
-	tmpl, err := template.New("template").Funcs(funcMap).Option("missingkey=error").Parse(string(templateText))
+	tmpl, err := template.New("template").Funcs(funcMap).Option("missingkey=default").Parse(string(templateText))
 	if err != nil {
 		return fmt.Errorf("parsing template: %s", err)
 	}

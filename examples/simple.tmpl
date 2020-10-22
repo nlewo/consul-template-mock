@@ -9,6 +9,12 @@ secret:
     {{- range $index, $data := .Data.a_list_of_secrets }}
     - {{ $data }}
     {{- end }}
+  missing_key: {{ .Data.missing_key }}
+  {{- if .Data.missing_key2 }}
+  missing_key2: {{ .Data.missing_key2 }}
+  {{- else }}
+  missing_key2: missing
+  {{- end -}}
 {{- end }}
 
 regexReplaceAll: {{ "simple" | regexReplaceAll "http://(.*)ple" "$1" }}
