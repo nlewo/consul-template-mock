@@ -5,6 +5,8 @@ secret:
   a_list_of_secrets:
     - 1111
     - 2222
+  missing_key: <no value>
+  missing_key2: missing
 
 regexReplaceAll: simple
 

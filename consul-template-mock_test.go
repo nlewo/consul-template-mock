@@ -37,6 +37,8 @@ func TestMissing(t *testing.T) {
 	mockData := []byte("{ \"secret\": {\"a\": {\"b\": \"c\"}}}")
 
 	if err := mock(template, mockData, rw); err == nil {
-		t.Errorf("Keys of map must be present")
+        if rw.String() != "<no value>" {
+            t.Errorf("Keys of map must be present")
+        }
 	}
 }
