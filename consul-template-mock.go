@@ -1,8 +1,11 @@
 package main
 
 import (
+	"bytes"
 	"encoding/json"
+	"github.com/pkg/errors"
 	"fmt"
+	"gopkg.in/yaml.v2"
 	"io"
 	"io/ioutil"
 	"log"
@@ -111,27 +114,34 @@ func mock(templateText, mockData []byte, wr io.Writer) error {
 		"replaceAll": func(f, t, s string) (string, error) {
 			return strings.Replace(s, f, t, -1), nil
 		},
-        "indent": func (spaces int, s string) (string, error) {
-            if spaces < 0 {
-                return "", fmt.Errorf("indent value must be a positive integer")
-            }
-            var output, prefix []byte
-            var sp bool
-            var size int
-            prefix = []byte(strings.Repeat(" ", spaces))
-            sp = true
-            for _, c := range []byte(s) {
-                if sp && c != '\n' {
-                    output = append(output, prefix...)
-                    size += spaces
-                }
-                output = append(output, c)
-                sp = c == '\n'
-                size++
-            }
-            return string(output[:size]), nil
-        },	
-    }
+		"indent": func(spaces int, s string) (string, error) {
+			if spaces < 0 {
+				return "", fmt.Errorf("indent value must be a positive integer")
+			}
+			var output, prefix []byte
+			var sp bool
+			var size int
+			prefix = []byte(strings.Repeat(" ", spaces))
+			sp = true
+			for _, c := range []byte(s) {
+				if sp && c != '\n' {
+					output = append(output, prefix...)
+					size += spaces
+				}
+				output = append(output, c)
+				sp = c == '\n'
+				size++
+			}
+			return string(output[:size]), nil
+		},
+		"toYAML": func(m map[string]interface{}) (string, error) {
+			result, err := yaml.Marshal(m)
+			if err != nil {
+				return "", errors.Wrap(err, "toYAML")
+			}
+			return string(bytes.TrimSpace(result)), nil
+		},
+	}
 
 	tmpl, err := template.New("template").Funcs(funcMap).Option("missingkey=default").Parse(string(templateText))
 	if err != nil {
