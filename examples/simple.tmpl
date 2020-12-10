@@ -14,7 +14,9 @@ secret:
   missing_key2: {{ .Data.missing_key2 }}
   {{- else }}
   missing_key2: missing
-  {{- end -}}
+  {{- end }}
+  nested:
+{{ .Data | toYAML | indent 4 }}
 {{- end }}
 
 regexReplaceAll: {{ "simple" | regexReplaceAll "http://(.*)ple" "$1" }}
