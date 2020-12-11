@@ -3,8 +3,8 @@ package main
 import (
 	"bytes"
 	"encoding/json"
-	"github.com/pkg/errors"
 	"fmt"
+	"github.com/pkg/errors"
 	"gopkg.in/yaml.v2"
 	"io"
 	"io/ioutil"
